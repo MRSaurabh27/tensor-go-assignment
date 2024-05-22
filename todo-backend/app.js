@@ -12,53 +12,56 @@
 const express = require("express");
 const env = require("dotenv");
 const favicon = require("serve-favicon");
-var path = require("path");
-var cors = require("cors");
+const path = require("path");
+const cors = require("cors");
 
-// imports routes, middleware, and configs
+// Import routes, middleware, and configs
 const todos = require("./src/routes/todos.route");
 const { notFoundRoute, errorHandler } = require("./src/configs/errorHandler");
 
-// loads environment variables from .env file
+// Load environment variables from .env file
 env.config();
 
-// initializes express app
+// Initialize express app
 const app = express();
 
-// application database connection establishment
+// Application database connection establishment
 const connectDatabase = require("./src/db/connect");
 connectDatabase();
 
-// corss-origin-allow-all
+// CORS setup - allow all origins
 app.use(cors());
 
-// sets favicon in routes
+// Serve favicon
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
-// sets static folder
+// Serve static files
 app.use(express.static(path.join(__dirname, "public")));
 
-// parse requests of content-type - application/json
+// Parse requests of content-type - application/json
 app.use(express.json());
 
-// parse requests of content-type - application/x-www-form-urlencoded
+// Parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-// sets default route
+// Default route
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Welcome to TODO Node.js application backend." });
 });
 
-// todos api routes
+// Todos API routes
 app.use(process.env.APP_API_PREFIX, todos);
 
-// 404 - not found error handler
+// 404 - Not Found error handler
 app.use(notFoundRoute);
 
-// error handler
+// Error handler
 app.use(errorHandler);
 
-// app listens to defined port
-app.listen(process.env.APP_PORT, () => {
-  console.log("TODO-App backend server running on: " + process.env.APP_BASE_URL);
+// App listens on a specified port (3001 in this case)
+const PORT = process.env.APP_PORT || 3001;
+const BASE_URL = process.env.APP_BASE_URL || `http://localhost:${PORT}`;
+
+app.listen(PORT, () => {
+  console.log(`TODO-App backend server running on: ${BASE_URL}`);
 });

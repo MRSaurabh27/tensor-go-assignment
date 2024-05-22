@@ -4,7 +4,7 @@
   "description": "todo-app-backend development with node.js, express.js & mongoDB",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=development nodemon app.js",
+    "start": "cross-env NODE_ENV=development nodemon app.js",
     "prod": "NODE_ENV=production node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -31,17 +31,20 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "mongoose": "^6.3.5",
+    "corss": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^6.12.8",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
-    "eslint": "^8.2.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.6.2"
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^3.1.0",
+    "prettier": "^2.8.8"
   }
 }
