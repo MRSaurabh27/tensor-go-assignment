@@ -3,7 +3,7 @@ version: '3.8'
 services:
   backend:
     container_name: backend
-    build: ./todo-backend
+    image: saurabhshinde27/backend-repo:latest
     env_file: ./todo-backend/.env
     ports:
       - "5000:5000"
@@ -24,7 +24,7 @@ services:
 
   frontend:
     container_name: frontend
-    build: ./todo-fronted
+    image: saurabhshinde27/frontend-repo:latest
     env_file: ./todo-fronted/.env
     ports:
       - "3000:3000"
