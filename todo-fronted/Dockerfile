@@ -26,7 +26,7 @@ WORKDIR /app
 COPY --from=build /app/build ./build
 
 # Expose port 3000 (or the port your React app listens to)
-EXPOSE 3000
+EXPOSE 3001
 
 # Command to run your React app
 CMD ["npx", "serve", "-s", "build"]
